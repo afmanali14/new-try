@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Letter Page</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+html, body{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family:'Playfair Display', serif;
+}
+
+/* FULL SCREEN BACKGROUND */
+body{
+    background-image:url("https://i.postimg.cc/Y0P8MS19/Chat_GPT_Image_Jan_26_2026_01_41_59_AM.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    overflow-y:auto;
+}
+
+/* DARK OVERLAY FOR READABILITY */
+.overlay{
+    min-height:100vh;
+    background:rgba(0,0,0,0.35);
+    padding:40px 20px 80px;
+    box-sizing:border-box;
+}
+
+/* TEXT AREA */
+#message{
+    max-width:900px;
+    margin:0 auto;
+    color:white;
+    font-size:26px;
+    font-weight:600;   /* 🔥 slightly bold */
+    line-height:1.6;
+    white-space:pre-wrap;
+    text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    #message{
+        font-size:20px;
+        padding:0 10px;
+    }
+    .overlay{
+        padding-top:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+    <div id="message">Loading message...</div>
+</div>
+
+<script>
+/* LOAD FULL TEXT FROM GITHUB (NO CUTTING) */
+fetch("https://raw.githubusercontent.com/afmanali14/birthday-letter/refs/heads/main/letter.text")
+.then(res => res.text())
+.then(text => {
+    document.getElementById("message").innerText = text;
+})
+.catch(() => {
+    document.getElementById("message").innerText = "Message failed to load.";
+});
+</script>
+
+</body>
+</html>
